@@ -1,0 +1,43 @@
+<%- include('../partials/header.ejs')%>
+    <div class="container">
+        <form action = "/events/<%= event._id%>?_method=PUT" enctype="multipart/form-data" method="POST">
+            <div class="form-group">
+                <label for="title">Title:</label>
+                <input type="text" id="title" name="title" placeholder="Enter event title" value = "<%= event.title%>" required>
+            </div>
+            <div class="form-group">
+                <label for="startDateTime">Start:</label>
+                <input type="datetime-local" id="startDateTime" name="startDateTime" value = "<%= event.startDateTime%>" required>
+            </div>
+            <div class="form-group">
+                <label for="endDateTime">End:</label>
+                <input type="datetime-local" id="endDateTime" name="endDateTime" value = "<%= event.endDateTime%>" required>
+            </div>
+            <div class="form-group">
+                <label for="location">Location:</label>
+                <input type="text" id="location" name="location" placeholder="Enter location" value = "<%= event.location%>" required>
+            </div>
+            <div class="form-group">
+                <label for="category">Category:</label>
+                <select id="category" name="category" required>
+                    <option value="" disabled>Select a Category</option>
+                    <option value="Sport" <%= event.category === 'Sport' ? 'selected' : '' %>>Sport</option>
+                    <option value="Employment" <%= event.category === 'Employment' ? 'selected' : '' %>>Employment</option>
+                    <option value="Entertainment" <%= event.category === 'Entertainment' ? 'selected' : '' %>>Entertainment</option>
+                    <option value="Politic" <%= event.category === 'Politic' ? 'selected' : '' %>>Politic</option>
+                    <option value="Social" <%= event.category === 'Social' ? 'selected' : '' %>>Social</option>
+                    <option value="other" <%= event.category === 'other' ? 'selected' : '' %>>Other</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="details">Details:</label>
+                <textarea id="details" name="details" rows="4" cols="59" placeholder="Enter event description" required minlength="10"><%= event.details%></textarea>
+            </div>
+            <div class="form-group">
+                <label for="image">Image:</label>
+                <input type="file" id="image" name="image" required>
+            </div>
+            <button type="submit" class="btn-submit">Create Event</button>    
+        </form>
+    </div>
+    <%- include('../partials/footer.ejs')%>

@@ -1,0 +1,15 @@
+<%- include('../partials/header.ejs')%>
+    <div class="categories">
+        <%if(events.length) {%>
+            <%categories.forEach(category=>{%>
+                <h1><%= category%></h1>
+                <%events.forEach(event=>{
+                    if(event.category == category){%>
+                    <a href = "/events/<%= event._id%>"> <p><%= event.title%></p></a>
+                <% }});
+            })
+        } else {%>
+            <p>There are no event to display.</p>
+        <%}%>
+    </div>
+    <%- include('../partials/footer.ejs')%>
