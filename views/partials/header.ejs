@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JMB News</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- External Stylesheet -->
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+    <!-- Social media icons link -->
+    <script src="https://kit.fontawesome.com/872997afa3.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <!-- Navigation bar section -->
+    <div class="navbar">
+        <a href="/" class="logo">
+            <img src="/images/logo.png" alt="JMB News Logo">
+        </a>
+        <ul>
+            <%if(!user) {%>
+            <li><a href="/users/new">Signup</a></li>
+            <li><a href="/users/login">Login</a></li>
+            <%} else {%>
+                <li><a href="/events/new">New Event</a></li>
+                <li><a href="/users/profile"><%= user.name %>'s Profile</a></li>
+                <li><a href="/users/logout">Logout</a></li>
+            <%}%>
+
+        </ul>
+    </div>
+    <div class="event">
+        <a href="/events">Events</a>
+    </div>
+
+    <% if(errorMessages.length > 0) {%>
+        <% errorMessages.forEach(message=>{%>
+            <div class='error'>
+                <%=message%>
+            </div>
+            <%});%>
+                <%}%>
+   
+                    <% if(successMessages.length > 0) {%>
+   
+                        <% successMessages.forEach(message=>{%>
+                            <div class='success'>
+                                <%=message%>
+                            </div>
+                            <%});%>
+                                <%}%>
