@@ -1,0 +1,64 @@
+<%- include('../partials/header.ejs')%>
+    <div class="profile">
+    <%if(events.length) {%>
+        <br>
+        <p><strong>My Events</strong></p>
+        <br>
+        <table>
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <%events.forEach(event => {%>
+                    <tr>
+                        <td><a href='/events/<%= event.id %>'><%= event.title %></a></td>
+                        <td>
+                            
+                                <button class="edit-button" onclick="location.href='/events/<%= event.id %>/edit'">Edit</button>
+                                <form method="POST" action="/events/<%= event.id %>?_method=DELETE" class="action-form">
+                                    <button class="delete-button" type="submit">Delete</button>
+                                </form>
+                            
+                        </td>
+                    </tr>
+                <% }); %>
+            </tbody>
+        </table>
+    <%} else {%>
+        <br>
+        <p><strong>My Events</strong></p>
+        <br>
+        <p>You have not created any events</p>
+    <%}%>
+
+    <% if (rsvp.length) { %>
+        <br>
+        <p><strong>My RSVPs</strong></p>
+        <br>
+        <table>
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Going?</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% rsvp.forEach(rsvpItem => { %>
+                    <tr>
+                        <td><a href='/events/<%= rsvpItem.event.id %>'><%= rsvpItem.event.title %></a></td>
+                        <td><%= rsvpItem.status %></td>
+                    </tr>
+                <% }); %>
+            </tbody>
+        </table>
+    <%} else {%>
+        <br>
+        <p><strong>My RSVPs</strong></p>
+        <br>
+        <p>You currently have no rsvps.</p>  
+    <%}%>
+    </div>
+    <%- include('../partials/footer.ejs')%>
